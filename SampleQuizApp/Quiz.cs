@@ -15,7 +15,31 @@ namespace SampleQuizApp
             this.questions = questions;
         }
 
-        public void DisplayQuestion(Question question)
+        public void StartQuiz() {
+            Console.WriteLine("Welcome to the Quiz by Ashley P.!");
+            int questionNumber = 1;
+
+            foreach (Question question in questions)
+            {
+                Console.WriteLine($"Question number {questionNumber++}");
+                DisplayQuestion(question);
+                int userChoice = GetUserChoice();
+                if (question.IsCorrectAnswer(userChoice))
+                {
+                    Console.WriteLine("Correct Answer!");
+                }
+                else {
+                    Console.Write("Wrong Answer! The correct answer was: ");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write(question.CorrectAnswerIndex);
+                    Console.ResetColor();
+                    Console.Write($". {question.Answers[question.CorrectAnswerIndex]}\n");
+                }
+
+            }
+        }
+
+        private void DisplayQuestion(Question question)
         {
 
             Console.WriteLine(question.QuestionText);
@@ -29,13 +53,6 @@ namespace SampleQuizApp
                 
             }
 
-            if (GetUserChoice() == question.CorrectAnswerIndex)
-            {
-                Console.WriteLine("Your answer is correct!");
-            }
-            else {
-                Console.WriteLine("Wrong Answer!");
-            }
         }
 
         public int GetUserChoice() {

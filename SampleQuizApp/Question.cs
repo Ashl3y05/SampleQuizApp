@@ -21,7 +21,7 @@ namespace SampleQuizApp
             CorrectAnswerIndex = CorrectAnswer;
         }
 
-        public bool CheckAnswer(int userChoice) {
+        public bool IsCorrectAnswer(int userChoice) {
             return CorrectAnswerIndex == userChoice;
         }
         
