@@ -4,19 +4,25 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("what is 1+1? ");
-            Console.WriteLine("1: 1\n2: 2\n3: 3\n4: 4");
-            int userAnswer = int.Parse(Console.ReadLine());
 
-            Question question1 = new Question("what is 1+1?", [ "1", "2", "3", "4" ], 1);
+            Question[] questions = new Question[]
+           {
+                new Question(
+                    "What is the capital of Germany?",  // Question Text
+                    new string[] {"Paris", "Berlin", "London", "Madrid"}, // Answers Array
+                    1 // CorrectAnswerIndex
+                ),
+                new Question(
+                    "1+1?",  // Question Text
+                    new string[] {"1", "2", "3", "4"}, // Answers Array
+                    1 // CorrectAnswerIndex
+                )
+           };
 
-            if (question1.CheckAnswer(userAnswer))
-            {
-                Console.WriteLine("Correct!");
-            }
-            else {
-                Console.WriteLine($"Wrong! The Correct answer is: {question1.Answers[question1.CorrectAnswerIndex]}");
-            }
+
+            Quiz myQuiz = new Quiz(questions);
+            myQuiz.DisplayQuestion(questions[1]);
+            Console.ReadLine();
             Console.ReadKey();
         }
     }
