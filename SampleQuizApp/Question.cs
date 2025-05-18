@@ -22,7 +22,6 @@ namespace SampleQuizApp
         }
 
         public bool CheckAnswer(int userChoice) {
-            userChoice -= 1;
             return CorrectAnswerIndex == userChoice;
         }
         

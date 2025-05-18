@@ -28,6 +28,27 @@ namespace SampleQuizApp
                 Console.WriteLine($". {question.Answers[i]}");
                 
             }
+
+            if (GetUserChoice() == question.CorrectAnswerIndex)
+            {
+                Console.WriteLine("Your answer is correct!");
+            }
+            else {
+                Console.WriteLine("Wrong Answer!");
+            }
+        }
+
+        public int GetUserChoice() {
+            Console.WriteLine("Your answer: ");
+            string input = Console.ReadLine();
+            int choice = 0;
+
+            while (!int.TryParse(input, out choice) || choice < 1 || choice > 4) {
+                Console.WriteLine("Invalid input! Please enter a proper answer.");
+                input = Console.ReadLine();
+            }
+
+            return choice - 1;
         }
     }
 }
