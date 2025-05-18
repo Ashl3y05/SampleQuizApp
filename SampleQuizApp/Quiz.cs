@@ -8,18 +8,20 @@ namespace SampleQuizApp
 {
     class Quiz
     {
-        private Question[] questions;
+        private Question[] _questions;
+        private int _score;
 
         public Quiz(Question[] questions)
         {
-            this.questions = questions;
+            this._questions = questions;
+            _score = 0;
         }
 
         public void StartQuiz() {
             Console.WriteLine("Welcome to the Quiz by Ashley P.!");
             int questionNumber = 1;
 
-            foreach (Question question in questions)
+            foreach (Question question in _questions)
             {
                 Console.WriteLine($"Question number {questionNumber++}");
                 DisplayQuestion(question);
@@ -27,6 +29,7 @@ namespace SampleQuizApp
                 if (question.IsCorrectAnswer(userChoice))
                 {
                     Console.WriteLine("Correct Answer!");
+                    _score++;
                 }
                 else {
                     Console.Write("Wrong Answer! The correct answer was: ");
@@ -35,8 +38,18 @@ namespace SampleQuizApp
                     Console.ResetColor();
                     Console.Write($". {question.Answers[question.CorrectAnswerIndex]}\n");
                 }
-
+                
             }
+            DisplayResult();
+        }
+
+        public void DisplayResult() 
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("Results:");
+            Console.ResetColor();
+
+            Console.WriteLine($"Your Score is {_score} out of {_questions.Length}");
         }
 
         private void DisplayQuestion(Question question)
